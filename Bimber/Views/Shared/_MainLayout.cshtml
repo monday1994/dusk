@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_MainLayout</title>
+
+    @RenderSection("Header");
+</head>
+<body>
+    <div> 
+        @RenderBody()
+    </div>
+</body>
+
+    @RenderSection("Footer");
+</html>

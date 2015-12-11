@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Bimber.Models.Place>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoList)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @for (int i = 0; i < item.PhotoList.Count; i++)
+            {                
+                <p>@item.PhotoList.ElementAt(i).Link;</p>
+            }            
+        </td>
+        <td>
+            @for (int i = 0; i < item.Activities.Count; i++)
+            {
+                <p>@item.Activities.ElementAt(i).Name;</p>
+            }
+        </td>
+        <td>
+            @for (int i = 0; i < item.Users.Count; i++)
+            {
+                <p>@item.Users.ElementAt(i).Username;</p>
+            }
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlaceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlaceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlaceId })
+        </td>
+    </tr>
+}
+
+</table>
