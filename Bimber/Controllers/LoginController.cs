@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Facebook;
+using System.Diagnostics;
+using System.Web.Services;
 
 namespace Bimber.Controllers
 {
@@ -11,12 +14,30 @@ namespace Bimber.Controllers
         // GET: Login
         public ActionResult Index()
         {
+           
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(string uId, string accessToken)
+        [WebMethod(EnableSession=true)]
+        public ActionResult Index(string dataString)
         {
+            Debug.WriteLine("WLOZEM");
+            if(dataString != null)
+            {
+                Debug.WriteLine("dlugosc jsona = " + dataString.Length);
+                Debug.WriteLine("value jsona = " + dataString);
+            }
+            else
+            {
+                Debug.WriteLine("dlugosc jsona = 0");
+            }
+           
+
+            //var accessToken = context.Request["accessToken"];
+            //context.Session["AccessToken"] = accessToken;
+
+            //context.Response.Redirect("/MyUrlHere");
 
             return View();
         }

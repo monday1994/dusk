@@ -21,7 +21,7 @@ namespace Bimber.Models.DAL.Repositories
 
         public User GetById(int id)
         {   
-            User user = db.Users.FirstOrDefault(u => u.UserId == id);
+            User user = db.Users.FirstOrDefault(u => u.UserId == id);           
 
             return user;
         }

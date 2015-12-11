@@ -76,3 +76,42 @@ C:\Users\Francis\Desktop\BMBR v 2\Bimber\Bimber\bin\System.Web.Mvc.xml
 C:\Users\Francis\Desktop\BMBR v 2\Bimber\Bimber\obj\Debug\Bimber.csprojResolveAssemblyReference.cache
 C:\Users\Francis\Desktop\BMBR v 2\Bimber\Bimber\obj\Debug\Bimber.dll
 C:\Users\Francis\Desktop\BMBR v 2\Bimber\Bimber\obj\Debug\Bimber.pdb
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\csc.exe
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\vbc.exe
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\VBCSCompiler.exe
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Bimber.dll.config
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Bimber.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Bimber.pdb
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\EntityFramework.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\EntityFramework.SqlServer.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Facebook.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Helpers.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Mvc.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Razor.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Webpages.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Webpages.Razor.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\EntityFramework.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\EntityFramework.SqlServer.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Facebook.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Razor.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Webpages.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Webpages.Razor.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Helpers.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\bin\System.Web.Mvc.xml
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\obj\Debug\Bimber.csprojResolveAssemblyReference.cache
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\obj\Debug\Bimber.dll
+C:\Users\Francis\Desktop\dusk\dusk\Bimber\obj\Debug\Bimber.pdb

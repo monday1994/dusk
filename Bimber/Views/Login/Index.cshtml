@@ -3,6 +3,24 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<head>
+    <title>duuusk</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
 
-<h2>Index</h2>
+<script src="~/Scripts/FacebookScripts/facebook_login.js"></script>
+<div id="fb-root"></div>
+JEBAC JEBAC W CHUJ=TRUE;
+<div id="auth-status">
+    <div class="auth-loggedout">
+        <div class="fb-login-button" data-show-faces="true" data-width="400" data-max-rows="1" autologoutlink="true">Login with Facebook</div>
+    </div>
+    <div id="auth-loggedin" style="display: none">
+        Hi, <span id="auth-displayname"></span>(<a href="#" id="auth-logoutlink">logout</a>)
+    </div>
 
+</div>
