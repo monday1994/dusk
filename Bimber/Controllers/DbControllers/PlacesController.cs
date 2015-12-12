@@ -10,6 +10,7 @@ using Bimber.Models;
 using Bimber.Models.DAL;
 using System.Diagnostics;
 using Bimber.Models.DAL.Repositories;
+using Bimber.Models.ViewModels;
 
 namespace Bimber.Controllers
 {
@@ -19,27 +20,14 @@ namespace Bimber.Controllers
 
         private PlacesRepository placesRepo = new PlacesRepository();
 
+        private ActivitiesRepository activitiesRepo = new ActivitiesRepository();
+
+        private UsersRepository usersRepo = new UsersRepository();
+
         // GET: Places
         public ActionResult Index()
         {
-            
-
-            return View(db.Places.ToList());
-        }
-
-        // GET: Places/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Place place = db.Places.Find(id);
-            if (place == null)
-            {
-                return HttpNotFound();
-            }
-            return View(place);
+            return View(placesRepo.GetAll());
         }
 
         // GET: Places/Create
@@ -55,6 +43,21 @@ namespace Bimber.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PlaceId,Name,Lon,Lat")] Place place)
         {
+            string placeType = Request["PlaceType"];
+
+            switch (placeType)
+            {
+                case "PUB":
+                    place.PlaceType = TypeOfPlace.PUB;
+                    break;
+                case "RESTAURANT":
+                    place.PlaceType = TypeOfPlace.RESTAURANT;
+                    break;
+                case "CLUB":
+                    place.PlaceType = TypeOfPlace.CLUB;
+                    break;
+            }
+
             if (ModelState.IsValid)
             {
                 placesRepo.Add(place);
@@ -70,6 +73,9 @@ namespace Bimber.Controllers
         {
             Place place = placesRepo.GetById(id);
 
+            place.Activities = activitiesRepo.GetAll();
+            place.Users = usersRepo.GetAll();
+           
             if (place == null)
             {
                 return HttpNotFound();
@@ -84,13 +90,40 @@ namespace Bimber.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PlaceId,Name,Lon,Lat")] Place place)
         {
-            if (ModelState.IsValid)
-            {
-                placesRepo.Update(place);
+            string choosenActivity = Request["Activities"];
+            string choosenUser = Request["Users"];
+            string placeType = Request["PlaceType"];
 
-                return RedirectToAction("Index");
+            switch (placeType)
+            {
+                case "PUB":
+                    place.PlaceType = TypeOfPlace.PUB;
+                    break;
+                case "RESTAURANT":
+                    place.PlaceType = TypeOfPlace.RESTAURANT;
+                    break;
+                case "CLUB":
+                    place.PlaceType = TypeOfPlace.CLUB;
+                    break;
+                case "":
+                    break;
             }
-            return View(place);
+
+            if (!choosenActivity.Equals(""))
+            {
+                placesRepo.AddNewActivity(place, choosenActivity);
+            }
+
+            if (!choosenUser.Equals(""))
+            {
+                placesRepo.AddNewUser(place, choosenUser);
+            }
+
+            if (ModelState.IsValid && choosenUser.Equals("") && choosenActivity.Equals(""))
+            {
+                placesRepo.Update(place);                
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Places/Delete/5

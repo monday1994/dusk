@@ -11,6 +11,7 @@ using Bimber.Models.DAL;
 using Bimber.Models.DAL.Repositories;
 using System.Data.Entity.Core.Objects;
 using System.Diagnostics;
+using Bimber.Models.ViewModels;
 
 namespace Bimber.Controllers
 {
@@ -18,6 +19,9 @@ namespace Bimber.Controllers
     {
         private BimberDbContext db = new BimberDbContext();
         private UsersRepository usersRepo = new UsersRepository();
+        private PlacesRepository placesRepo = new PlacesRepository();
+        private GroupsRepository groupsRepo = new GroupsRepository();
+        private ActivitiesRepository activitiesRepo = new ActivitiesRepository();
 
         // GET: Users
         public ActionResult Index()
@@ -57,6 +61,15 @@ namespace Bimber.Controllers
             {
                 return HttpNotFound();
             }
+
+            user.Activities.Clear();
+            user.Groups.Clear();
+            user.Places.Clear();
+
+            user.Activities = activitiesRepo.GetAll();
+            user.Groups = groupsRepo.GetAll();
+            user.Places = placesRepo.GetAll();
+
             return View(user);
         }
 
@@ -67,13 +80,32 @@ namespace Bimber.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserId,Username,Lat,Lon")] User user)
         {
-            if (ModelState.IsValid)
+            string choosenGroup = Request["Groups"];
+            string choosenActivity = Request["Activities"];
+            string choosenPlace = Request["Places"];
+
+            if (!choosenGroup.Equals(""))
+            {
+                usersRepo.AddNewGroup(user, choosenGroup);
+            }
+
+            if (!choosenActivity.Equals(""))
+            {
+                usersRepo.AddNewActivity(user, choosenActivity);
+            }
+
+            if (!choosenPlace.Equals(""))
+            {
+                usersRepo.AddNewPlace(user, choosenPlace);
+            }
+
+            if (ModelState.IsValid && choosenGroup.Equals("") && choosenActivity.Equals("") && choosenPlace.Equals(""))
             {
                 usersRepo.Update(user);
-                return RedirectToAction("Index");
+                
             }
-        
-            return View(user);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Users/Delete/5

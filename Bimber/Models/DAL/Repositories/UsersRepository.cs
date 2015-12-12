@@ -61,10 +61,72 @@ namespace Bimber.Models.DAL.Repositories
             db.SaveChanges();
         }
 
+        public void AddNewGroup(User user,string groupToBeAdd)
+        {
+            Group tempGroup = db.Groups.FirstOrDefault(g => g.Name.Equals(groupToBeAdd));
+
+            user.Groups.Add(tempGroup);
+            tempGroup.Users.Add(user);
+
+            db.Entry(user).State = EntityState.Modified;
+            db.Entry(tempGroup).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
+        public void AddNewActivity(User user, string activityToBeAdd)
+        {
+            Activity tempActivity = db.Activities.FirstOrDefault(g => g.Name.Equals(activityToBeAdd));
+
+            user.Activities.Add(tempActivity);
+            tempActivity.Users.Add(user);
+
+            db.Entry(user).State = EntityState.Modified;
+            db.Entry(tempActivity).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
+        public void AddNewPlace(User user, string placeToBeAdd)
+        {
+            Place tempPlace = db.Places.FirstOrDefault(g => g.Name.Equals(placeToBeAdd));
+
+            user.Places.Add(tempPlace);
+            tempPlace.Users.Add(user);
+
+            db.Entry(user).State = EntityState.Modified;
+            db.Entry(tempPlace).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
         public void RemoveById(int id)
         {
             User tempUser = GetById(id);
+
             Preference tempPref = prefRepo.GetById(tempUser.UserId);
+            
+            foreach(var activity in tempUser.Activities)
+            {
+                activity.Users.Remove(tempUser);
+                db.Entry(activity).State = EntityState.Modified;                
+            }
+
+            foreach (var groups in tempUser.Groups)
+            {
+                groups.Users.Remove(tempUser);
+                db.Entry(groups).State = EntityState.Modified;
+            }
+
+            foreach (var place in tempUser.Places)
+            {
+                place.Users.Remove(tempUser);
+                db.Entry(place).State = EntityState.Modified;
+            }
+
+            tempUser.Activities.Clear();
+            tempUser.Groups.Clear();
+            tempUser.Places.Clear();
             
             prefRepo.RemoveById(tempPref.UserId);           
 
@@ -79,8 +141,53 @@ namespace Bimber.Models.DAL.Repositories
             db.SaveChanges();
           
         }
+
+        //method updates all entities where user exists
         public void Update(User user)
-        {
+        {            
+            foreach(var userGroup in user.Groups)
+            {
+                foreach(var tempUser in userGroup.Users)
+                {
+                    if(tempUser.UserId == user.UserId)
+                    {
+                        userGroup.Users.Remove(tempUser);
+                        userGroup.Users.Add(user);
+                        db.Entry(userGroup).State = EntityState.Modified;
+                    }
+                }
+            }
+
+            foreach (var userPlace in user.Places)
+            {
+                foreach (var tempUser in userPlace.Users)
+                {
+                    if (tempUser.UserId == user.UserId)
+                    {
+                        userPlace.Users.Remove(tempUser);
+                        userPlace.Users.Add(user);
+                        db.Entry(userPlace).State = EntityState.Modified;
+                    }
+                }
+            }
+
+            foreach (var userActivity in user.Activities)
+            {
+                foreach (var tempUser in userActivity.Users)
+                {
+                    if (tempUser.UserId == user.UserId)
+                    {
+                        userActivity.Users.Remove(tempUser);
+                        userActivity.Users.Add(user);
+                        db.Entry(userActivity).State = EntityState.Modified;
+                    }
+                }
+            }
+
+            Preference tempPref = db.Preferences.FirstOrDefault(x => x.UserId == user.UserId);
+            tempPref.User = user;
+            db.Entry(tempPref).State = EntityState.Modified;
+
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
          

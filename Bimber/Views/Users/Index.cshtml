@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -32,6 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Places)
         </th>
+        <th>
+            Actions
+        </th>
     </tr>
     
 @foreach (var item in Model) {
@@ -51,19 +55,19 @@
         <td>
             @for (int i = 0; i < item.Activities.Count(); i++)
             {
-                @item.Activities.ElementAt(i).Name;
+                @item.Activities.ElementAt(i).Name; <br />
             }
         
         <td>
             @for (int i = 0; i < item.Groups.Count(); i++)
             {
-                @item.Groups.ElementAt(i).Name;
+                @item.Groups.ElementAt(i).Name; <br />
             }
         </td>
         <td>
             @for (int i = 0; i < item.Places.Count(); i++)
             {
-                @item.Places.ElementAt(i).Name;
+                @item.Places.ElementAt(i).Name; <br />
             }
         </td>
         

@@ -2,6 +2,12 @@
 
 @{
     ViewBag.Title = "Create";
+
+    List<string> PlaceTypes = new List<string>();
+
+    PlaceTypes.Add("PUB");
+    PlaceTypes.Add("CLUB");
+    PlaceTypes.Add("RESTAURANT");
 }
 
 <h2>Create</h2>
@@ -38,6 +44,12 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlaceType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PlaceType", new SelectList(PlaceTypes), "-select-place-type-")
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

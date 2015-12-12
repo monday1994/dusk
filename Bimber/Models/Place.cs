@@ -16,6 +16,8 @@ namespace Bimber.Models
 
         public double Lon { get; set; }
         public double Lat { get; set; }
+        
+        public TypeOfPlace PlaceType { get; set; }
 
         public virtual ICollection<Activity> Activities { get; set; }
 
@@ -30,11 +32,18 @@ namespace Bimber.Models
             Activities = new List<Activity>();
         }
 
-        public Place(string name, double lon, double lat) : this()
+        public Place(string name, double lon, double lat, TypeOfPlace placeType) : this()
         {            
             Name = name;
             Lon = lon;
             Lat = lat;
+            PlaceType = placeType;
         }
+    }
+    public enum TypeOfPlace
+    {
+        PUB,
+        CLUB,
+        RESTAURANT,
     }
 }

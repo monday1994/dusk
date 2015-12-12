@@ -16,8 +16,6 @@ namespace Bimber.Models
 
         public DateTime? StartTime { get; set; }
 
-        public TypeOfPlace PlaceType { get; set; }
-
         public virtual ICollection<User> Users { get; set; }
 
         public Activity()
@@ -25,18 +23,12 @@ namespace Bimber.Models
             Users = new List<User>();
         }
 
-        public Activity(string name, DateTime startTime, TypeOfPlace placeType) : this()
+        public Activity(string name, DateTime startTime) : this()
         {            
             Name = name;
             StartTime = startTime;
-            PlaceType = placeType;
         }
     }
 
-    public enum TypeOfPlace
-    {
-        PUB,
-        CLUB,
-        RESTAURANT,        
-    }
+    
 }

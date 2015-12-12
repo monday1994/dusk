@@ -41,6 +41,32 @@ namespace Bimber.Models.DAL.Repositories
             db.SaveChanges();
         }
 
+        public void AddNewUser(Place place, string username)
+        {
+            User tempUser = db.Users.FirstOrDefault(u => u.Username.Equals(username));
+
+            tempUser.Places.Add(place);
+            place.Users.Add(tempUser);
+
+            db.Entry(tempUser).State = EntityState.Modified;
+            db.Entry(place).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
+        public void AddNewActivity(Place place, string activityName)
+        {
+            Activity tempActivity = db.Activities.FirstOrDefault(a => a.Name.Equals(activityName));
+
+            tempActivity.Place = place;
+            place.Activities.Add(tempActivity);
+
+            db.Entry(tempActivity).State = EntityState.Modified;
+            db.Entry(place).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
         public void RemoveById(int id)
         {
             Place tempPlace = GetById(id);
@@ -56,6 +82,28 @@ namespace Bimber.Models.DAL.Repositories
         }
         public void Update(Place place)
         {
+            foreach(var placeActivity in place.Activities)
+            {
+                if (placeActivity.Place.PlaceId == place.PlaceId)
+                {
+                    placeActivity.Place = place;
+                    db.Entry(placeActivity).State = EntityState.Modified;
+                }
+            }
+
+            foreach(var user in place.Users)
+            {
+                foreach(var tempPlace in user.Places)
+                {
+                    if(tempPlace.PlaceId == place.PlaceId)
+                    {
+                        user.Places.Remove(tempPlace);
+                        user.Places.Add(place);
+                        db.Entry(user.Places).State = EntityState.Modified;
+                    }
+                }
+            }
+
             db.Entry(place).State = EntityState.Modified;
             db.SaveChanges();
         }

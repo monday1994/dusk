@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(model => model.Lat)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PlaceType)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PhotoList)
         </th>
         <th>
@@ -42,6 +45,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlaceType)
         </td>
         <td>
             @for (int i = 0; i < item.PhotoList.Count; i++)

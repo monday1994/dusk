@@ -2,6 +2,23 @@
 
 @{
     ViewBag.Title = "Edit";
+
+    var activitiesNames = new List<string>();
+    var usersNames = new List<string>();
+    List<string> PlaceTypes = new List<string>();
+
+    PlaceTypes.Add("PUB");
+    PlaceTypes.Add("CLUB");
+    PlaceTypes.Add("RESTAURANT");
+
+    foreach (var item in Model.Activities)
+    {
+        activitiesNames.Add(item.Name);
+    }
+    foreach(var item in Model.Users)
+    {
+        usersNames.Add(item.Username);
+    }
 }
 
 <h2>Edit</h2>
@@ -37,6 +54,27 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Lat, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Lat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlaceType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PlaceType", new SelectList(PlaceTypes), "-select-place-type-")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Activities, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Activities", new SelectList(activitiesNames), "-select-activity-")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Users, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Users", new SelectList(usersNames), "-select-user-")
             </div>
         </div>
 

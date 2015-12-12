@@ -42,6 +42,19 @@ namespace Bimber.Models.DAL.Repositories
            
         }
 
+        public void AddNewUser(Group group, string username)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Username.Equals(username));
+
+            user.Groups.Add(group);
+            group.Users.Add(user);
+
+            db.Entry(user).State = EntityState.Modified;
+            db.Entry(group).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
         public void RemoveById(int id)
         {
             Group tempGroup = GetById(id);
@@ -57,6 +70,20 @@ namespace Bimber.Models.DAL.Repositories
         }
         public void Update(Group group)
         {
+            foreach(var user in group.Users)
+            {
+                foreach(var tempGroup in user.Groups)
+                {
+                    if(tempGroup.GroupId == group.GroupId)
+                    {
+                        user.Groups.Remove(tempGroup);
+                        user.Groups.Add(group);
+
+                        db.Entry(user).State = EntityState.Modified;
+                    }
+                }
+            }
+
             db.Entry(group).State = EntityState.Modified;
             db.SaveChanges();
         }

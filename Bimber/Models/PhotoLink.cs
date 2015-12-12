@@ -17,5 +17,9 @@ namespace Bimber.Models
         {
             //empty
         }
+        public PhotoLink(string link)
+        {
+            Link = link;
+        }
     }
 }

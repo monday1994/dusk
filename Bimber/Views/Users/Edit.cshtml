@@ -1,17 +1,36 @@
 ﻿@model Bimber.Models.User
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Add";
+
+    List<string> GroupsNames = new List<string>();
+    List<string> PlacesNames = new List<string>();
+    List<string> ActivitiesNames = new List<string>();
+
+    foreach (var item in Model.Groups)
+    {
+        GroupsNames.Add(item.Name);
+    }
+
+    foreach (var item in Model.Activities)
+    {
+        ActivitiesNames.Add(item.Name);
+    }
+
+    foreach (var item in Model.Places)
+    {
+        PlacesNames.Add(item.Name);
+    }
 }
 
-<h2>Edit</h2>
+<h2>Add</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>User</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.UserId)
@@ -41,6 +60,27 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Groups, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Groups", new SelectList(GroupsNames), "-select-group-")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Places, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Places", new SelectList(PlacesNames), "-select-place-")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Activities, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Activities", new SelectList(ActivitiesNames), "-select-activity-")
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -51,3 +91,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+

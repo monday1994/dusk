@@ -18,10 +18,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PlaceType)
-        </th>
+        </th>        
         <th>
             @Html.DisplayNameFor(model => model.Users)
         </th>
@@ -38,9 +35,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlaceType)
         </td>
         <td>
             @for (int i = 0; i < item.Users.Count; i++)

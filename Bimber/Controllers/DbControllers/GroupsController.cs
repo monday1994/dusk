@@ -67,6 +67,7 @@ namespace Bimber.Controllers
         public ActionResult Edit(int id)
         {
             Group group = groupsRepo.GetById(id);
+            group.Users = usersRepo.GetAll();
 
             if (group == null)
             {
@@ -82,13 +83,19 @@ namespace Bimber.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GroupId,Name,NumberOfUsers")] Group group)
         {
-            if (ModelState.IsValid)
+            string choosenUser = Request["Users"];           
+            
+            if (!choosenUser.Equals(""))
+            {
+                groupsRepo.AddNewUser(group, choosenUser);
+            }
+
+            if (ModelState.IsValid && choosenUser.Equals(""))
             {
                 groupsRepo.Update(group);
-
-                return RedirectToAction("Index");
+                
             }
-            return View(group);
+            return RedirectToAction("Index");
         }
 
         // GET: Groups/Delete/5
