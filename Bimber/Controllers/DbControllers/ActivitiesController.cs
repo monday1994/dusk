@@ -93,7 +93,7 @@ namespace Bimber.Controllers
         public ActionResult Edit([Bind(Include = "ActivityId,Name,PlaceId,StartTime,PlaceType")] Activity activity)
         {
             string choosenUser = Request["Users"];
-            string choosenPlace = Request["Places"];
+            string choosenPlace = Request["Places"];                 
 
             if (!choosenUser.Equals(""))
             {

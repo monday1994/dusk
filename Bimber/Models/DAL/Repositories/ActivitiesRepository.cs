@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,12 +45,27 @@ namespace Bimber.Models.DAL.Repositories
         public void AddNewUser(Activity activity, string username)
         {
             User user = db.Users.FirstOrDefault(u => u.Username.Equals(username));
+            Activity tempActivity = db.Activities.FirstOrDefault(a => a.Name.Equals(activity.Name));         
 
-            user.Activities.Add(activity);
-            activity.Users.Add(user);
+            if (!activity.Name.Equals(tempActivity.Name))
+            {
+                tempActivity.Name = activity.Name;
+            }
+
+            if (activity.StartTime != tempActivity.StartTime)
+            {
+                tempActivity.StartTime = activity.StartTime;
+            }            
+           
+            user.Activities.Add(tempActivity);
+
+    
+            user.Places.Add(tempActivity.Place);
+            
+            tempActivity.Users.Add(user);
 
             db.Entry(user).State = EntityState.Modified;
-            db.Entry(activity).State = EntityState.Modified;
+            db.Entry(tempActivity).State = EntityState.Modified;
 
             db.SaveChanges();
         }
@@ -57,12 +73,25 @@ namespace Bimber.Models.DAL.Repositories
         public void AddPlace(Activity activity, string placename)
         {
             Place place = db.Places.FirstOrDefault(p => p.Name.Equals(placename));
+            Activity tempActivity = db.Activities.FirstOrDefault(a => a.Name.Equals(activity.Name));
 
-            place.Activities.Add(activity);
-            activity.Place = place;
+
+            if (!activity.Name.Equals(tempActivity.Name))
+            {
+                tempActivity.Name = activity.Name;
+            }
+
+            if (activity.StartTime != tempActivity.StartTime)
+            {
+                tempActivity.StartTime = activity.StartTime;
+            }
+
+            place.Activities.Add(tempActivity);            
+
+            tempActivity.Place = place;
 
             db.Entry(place).State = EntityState.Modified;
-            db.Entry(activity).State = EntityState.Modified;
+            db.Entry(tempActivity).State = EntityState.Modified;
 
             db.SaveChanges();
         }

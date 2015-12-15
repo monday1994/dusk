@@ -67,6 +67,8 @@ namespace Bimber.Controllers
         public ActionResult Edit(int id)
         {
             Group group = groupsRepo.GetById(id);
+
+            group.Users.Clear();
             group.Users = usersRepo.GetAll();
 
             if (group == null)
