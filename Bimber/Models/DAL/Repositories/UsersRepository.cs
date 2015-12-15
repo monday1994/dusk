@@ -103,31 +103,9 @@ namespace Bimber.Models.DAL.Repositories
         public void RemoveById(int id)
         {
             User tempUser = GetById(id);
-
+            
             Preference tempPref = prefRepo.GetById(tempUser.UserId);
-            
-            foreach(var activity in tempUser.Activities)
-            {
-                activity.Users.Remove(tempUser);
-                db.Entry(activity).State = EntityState.Modified;                
-            }
-
-            foreach (var groups in tempUser.Groups)
-            {
-                groups.Users.Remove(tempUser);
-                db.Entry(groups).State = EntityState.Modified;
-            }
-
-            foreach (var place in tempUser.Places)
-            {
-                place.Users.Remove(tempUser);
-                db.Entry(place).State = EntityState.Modified;
-            }
-
-            tempUser.Activities.Clear();
-            tempUser.Groups.Clear();
-            tempUser.Places.Clear();
-            
+                                   
             prefRepo.RemoveById(tempPref.UserId);           
 
             db.Users.Remove(tempUser);
@@ -184,9 +162,9 @@ namespace Bimber.Models.DAL.Repositories
                 }
             }
 
-            Preference tempPref = db.Preferences.FirstOrDefault(x => x.UserId == user.UserId);
-            tempPref.User = user;
-            db.Entry(tempPref).State = EntityState.Modified;
+            //Preference tempPref = db.Preferences.FirstOrDefault(x => x.UserId == user.UserId);
+            //tempPref.User = user;
+            //db.Entry(tempPref).State = EntityState.Modified;
 
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();

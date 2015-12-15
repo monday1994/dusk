@@ -41,6 +41,32 @@ namespace Bimber.Models.DAL.Repositories
             db.SaveChanges();
         }
 
+        public void AddNewUser(Activity activity, string username)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Username.Equals(username));
+
+            user.Activities.Add(activity);
+            activity.Users.Add(user);
+
+            db.Entry(user).State = EntityState.Modified;
+            db.Entry(activity).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
+        public void AddPlace(Activity activity, string placename)
+        {
+            Place place = db.Places.FirstOrDefault(p => p.Name.Equals(placename));
+
+            place.Activities.Add(activity);
+            activity.Place = place;
+
+            db.Entry(place).State = EntityState.Modified;
+            db.Entry(activity).State = EntityState.Modified;
+
+            db.SaveChanges();
+        }
+
         public void RemoveById(int id)
         {
             Activity tempActivity = GetById(id);
@@ -56,6 +82,27 @@ namespace Bimber.Models.DAL.Repositories
         }
         public void Update(Activity activity)
         {
+            Place tempPlace = activity.Place;
+
+            if(tempPlace != null)
+            {
+                db.Entry(tempPlace).State = EntityState.Modified;
+            }
+
+            foreach (var user in activity.Users)
+            {
+                foreach(var tempActivity in user.Activities)
+                {
+                    if(tempActivity.ActivityId == activity.ActivityId)
+                    {
+                        user.Activities.Remove(tempActivity);
+                        user.Activities.Add(activity);
+                        db.Entry(user).State = EntityState.Modified;
+                    }
+                }
+            }
+
+
             db.Entry(activity).State = EntityState.Modified;
             db.SaveChanges();
         }

@@ -10,6 +10,7 @@ using Bimber.Models;
 using Bimber.Models.DAL;
 using System.Diagnostics;
 using Bimber.Models.DAL.Repositories;
+using Bimber.Models.ViewModels;
 
 namespace Bimber.Controllers
 {
@@ -18,6 +19,10 @@ namespace Bimber.Controllers
         private BimberDbContext db = new BimberDbContext();
 
         private ActivitiesRepository activitiesRepo = new ActivitiesRepository();
+
+        private UsersRepository usersRepo = new UsersRepository();
+
+        private PlacesRepository placesRepo = new PlacesRepository();
 
         // GET: Activities
         public ActionResult Index()
@@ -64,14 +69,20 @@ namespace Bimber.Controllers
         // GET: Activities/Edit/5
         public ActionResult Edit(int id)
         {
-            Activity activity = activitiesRepo.GetById(id);
+            ActivitiesViewModel activitiesVM = new ActivitiesViewModel();
+            activitiesVM.Activity = activitiesRepo.GetById(id);
 
-            if (activity == null)
+
+            activitiesVM.Users.Clear();
+            activitiesVM.Users = usersRepo.GetAll();
+            activitiesVM.Places = placesRepo.GetAll();
+
+            if (activitiesVM.Activity == null)
             {
                 return HttpNotFound();
             }
           
-            return View(activity);
+            return View(activitiesVM);
         }
 
         // POST: Activities/Edit/5
@@ -81,13 +92,25 @@ namespace Bimber.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ActivityId,Name,PlaceId,StartTime,PlaceType")] Activity activity)
         {
-            if (ModelState.IsValid)
-            {
-                activitiesRepo.Update(activity);
+            string choosenUser = Request["Users"];
+            string choosenPlace = Request["Places"];
 
-                return RedirectToAction("Index");
+            if (!choosenUser.Equals(""))
+            {
+                activitiesRepo.AddNewUser(activity, choosenUser);
             }
-            return View(activity);
+
+            if (!choosenPlace.Equals(""))
+            {
+                activitiesRepo.AddPlace(activity, choosenPlace);
+            }
+
+            if (ModelState.IsValid && choosenPlace.Equals("") && choosenUser.Equals(""))
+            {
+                activitiesRepo.Update(activity);              
+            }
+
+            return RedirectToAction("Index");
         }
 
         // GET: Activities/Delete/5
