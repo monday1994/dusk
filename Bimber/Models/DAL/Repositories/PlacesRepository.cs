@@ -70,6 +70,12 @@ namespace Bimber.Models.DAL.Repositories
         public void RemoveById(int id)
         {
             Place tempPlace = GetById(id);
+
+            foreach(var activity in tempPlace.Activities.ToList())
+            {
+                db.Activities.Remove(activity);
+            }
+            
             db.Places.Remove(tempPlace);
             db.SaveChanges();
         }
