@@ -74,7 +74,20 @@ namespace Bimber.Models.DAL.Repositories
         {
             Place place = db.Places.FirstOrDefault(p => p.Name.Equals(placename));
             Activity tempActivity = db.Activities.FirstOrDefault(a => a.Name.Equals(activity.Name));
-
+            
+            if(place != null)
+            {
+                foreach (var user in tempActivity.Users)
+                {
+                    foreach(var tempPlace in user.Places.ToList())
+                    {
+                        if (!tempPlace.Name.Equals(place.Name))
+                        {
+                            user.Places.Add(place);
+                        }
+                    }                
+                }
+            }
 
             if (!activity.Name.Equals(tempActivity.Name))
             {

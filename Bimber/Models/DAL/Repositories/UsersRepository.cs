@@ -79,6 +79,7 @@ namespace Bimber.Models.DAL.Repositories
             Activity tempActivity = db.Activities.FirstOrDefault(g => g.Name.Equals(activityToBeAdd));
 
             user.Activities.Add(tempActivity);
+            user.Places.Add(tempActivity.Place);
             tempActivity.Users.Add(user);
 
             db.Entry(user).State = EntityState.Modified;
