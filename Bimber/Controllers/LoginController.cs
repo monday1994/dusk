@@ -26,7 +26,7 @@ namespace Bimber.Controllers
             FacebookClient fbClient = new FacebookClient();
 
             fbClient.AccessToken = dataString;
-            fbClient.
+            
             if(dataString != null)
             {
                 Debug.WriteLine("dlugosc jsona = " + dataString.Length);
