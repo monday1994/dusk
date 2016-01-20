@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bimber.MvcApplication">
+    <Position X="22.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Controllers.ActivitiesController">
+    <Position X="9" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABBCARAACAAAAAAAAAAAEAAEACAAEBAAAAAAA=</HashCode>
+      <FileName>Controllers\DbControllers\ActivitiesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="activitiesRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Controllers.GroupsController">
+    <Position X="15" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARABCAAAAAAAAAAAEAAEACAAEBAAAAAAA=</HashCode>
+      <FileName>Controllers\DbControllers\GroupsController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+      <Field Name="groupsRepo" />
+      <Field Name="usersRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Controllers.HomeController">
+    <Position X="19" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbControllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Controllers.PlacesController">
+    <Position X="12.75" Y="6.75" Width="1.5" />
+    <InheritanceLine Type="System.Web.Mvc.Controller" FixedToPoint="true">
+      <Path>
+        <Point X="19" Y="10.25" />
+        <Point X="19" Y="9.25" />
+        <Point X="15.833" Y="9.25" Type="JumpStart" />
+        <Point X="15.667" Y="9.25" Type="JumpEnd" />
+        <Point X="14.625" Y="9.25" />
+        <Point X="14.625" Y="6.75" />
+        <Point X="14.25" Y="6.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABBCAQAACAAAAAAAAAAAEAAEACAAEBAAAAAAA=</HashCode>
+      <FileName>Controllers\DbControllers\PlacesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="activitiesRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Controllers.PreferencesController">
+    <Position X="17" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbControllers\PreferencesController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Controllers.UsersController">
+    <Position X="12.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABBCAQABCAAAAAAAAAAAEAAEACAAEBAAAAAAA=</HashCode>
+      <FileName>Controllers\DbControllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="activitiesRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Controllers.LoginController">
+    <Position X="22.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Models.Activity">
+    <Position X="6.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAEAAAAAAAAQAIAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Models.Group">
+    <Position X="4.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Models.PhotoLink">
+    <Position X="2.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQAAAgAA=</HashCode>
+      <FileName>Models\PhotoLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Models.Place">
+    <Position X="6" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAAAAAAAAAAQAAAgAAAAoAAAAAIAABAA=</HashCode>
+      <FileName>Models\Place.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Models.Preference">
+    <Position X="4.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJAAAAAAAABIAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Preference.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="UserRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.User">
+    <Position X="1.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAIAAAQAAAAgAAAgAAAAAAEAAAIAAAEA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="UserRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.DAL.BimberDbContext">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAEA=</HashCode>
+      <FileName>Models\DAL\BimberDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bimber.Models.DAL.DbInitializer">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABBAAQgBAAAEAAAAAAAAQAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\DAL\DbInitializer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+      <Field Name="groupsRepo" />
+      <Field Name="placesRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.DAL.Repositories.ActivitiesRepository">
+    <Position X="8.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAQAgAAAQAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\DAL\Repositories\ActivitiesRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.DAL.Repositories.GroupsRepository">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAQAgAAAQAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\DAL\Repositories\GroupsRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.DAL.Repositories.PlacesRepository">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAQAAAAAAQAgAAAQAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\DAL\Repositories\PlacesRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.DAL.Repositories.PreferencesRepository">
+    <Position X="5.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\DAL\Repositories\PreferencesRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.DAL.Repositories.UsersRepository">
+    <Position X="3.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAQAAAAAQQAgAAAAAAAAAAAACADAAAAgAAAAACAIA=</HashCode>
+      <FileName>Models\DAL\Repositories\UsersRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="db" />
+      <Field Name="prefRepo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bimber.Models.ViewModels.ActivitiesViewModel">
+    <Position X="0.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAAEAAAMAAAAA=</HashCode>
+      <FileName>Models\ViewModels\ActivitiesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Web.Mvc.Controller" Collapsed="true">
+    <Position X="18.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

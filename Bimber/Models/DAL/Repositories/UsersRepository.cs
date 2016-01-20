@@ -126,15 +126,18 @@ namespace Bimber.Models.DAL.Repositories
         {            
             foreach(var userGroup in user.Groups)
             {
-                foreach(var tempUser in userGroup.Users)
+                //userGroup.Users.FirstOrDefault(u => u.UserId == user.UserId).Username = user.Username;
+                //db.Entry(userGroup).State = EntityState.Modified;
+                foreach (var tempUser in userGroup.Users)
                 {
-                    if(tempUser.UserId == user.UserId)
+                    if (tempUser.UserId == user.UserId)
                     {
                         userGroup.Users.Remove(tempUser);
                         userGroup.Users.Add(user);
                         db.Entry(userGroup).State = EntityState.Modified;
                     }
                 }
+
             }
 
             foreach (var userPlace in user.Places)
@@ -162,10 +165,7 @@ namespace Bimber.Models.DAL.Repositories
                     }
                 }
             }
-
-            //Preference tempPref = db.Preferences.FirstOrDefault(x => x.UserId == user.UserId);
-            //tempPref.User = user;
-            //db.Entry(tempPref).State = EntityState.Modified;
+            
 
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();

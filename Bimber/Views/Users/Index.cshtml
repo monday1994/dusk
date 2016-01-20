@@ -13,9 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Username)
         </th>
         <th>
@@ -41,9 +38,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Username)
         </td>
         <td>
@@ -55,19 +49,19 @@
         <td>
             @for (int i = 0; i < item.Activities.Count(); i++)
             {
-                @item.Activities.ElementAt(i).Name; <br />
+                @item.Activities.ElementAt(i).Name <br />
             }
         
         <td>
             @for (int i = 0; i < item.Groups.Count(); i++)
             {
-                @item.Groups.ElementAt(i).Name; <br />
+                @item.Groups.ElementAt(i).Name <br />
             }
         </td>
         <td>
             @for (int i = 0; i < item.Places.Count(); i++)
             {
-                @item.Places.ElementAt(i).Name; <br />
+                @item.Places.ElementAt(i).Name <br />
             }
         </td>
         

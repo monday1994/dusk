@@ -17,7 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Users)
         </th>
-        <th></th>
+        <th>
+            Actions
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -33,7 +35,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GroupId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GroupId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.GroupId })
         </td>
     </tr>

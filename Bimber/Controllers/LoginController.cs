@@ -22,7 +22,11 @@ namespace Bimber.Controllers
         [WebMethod(EnableSession=true)]
         public ActionResult Index(string dataString)
         {
-            Debug.WriteLine("WLOZEM");
+
+            FacebookClient fbClient = new FacebookClient();
+
+            fbClient.AccessToken = dataString;
+            fbClient.
             if(dataString != null)
             {
                 Debug.WriteLine("dlugosc jsona = " + dataString.Length);
